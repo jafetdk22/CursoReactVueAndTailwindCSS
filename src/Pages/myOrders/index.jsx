@@ -12,8 +12,9 @@ const MyOrders = () => {
         <div className="grid w-full max-w-screen-lg">
           <div className="flex flex-col items-center justify-center p-6 rounded-lg shadow-lg">
             <h1 className="text-3xl bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent font-semibold">
-              No products found
+              No orders found
             </h1>
+
             <p className="text-lg bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent font-semibold mt-2 text-center">
               You have not made any orders yet. Please make an order to see your
               orders.
