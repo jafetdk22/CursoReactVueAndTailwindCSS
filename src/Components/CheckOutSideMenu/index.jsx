@@ -27,10 +27,33 @@ const CheckOutSideMenu = () => {
     context.setOrder([...context.order, orderToAdd]);
     context.setCartProducts([]);
     context.closeCheckoutSideMenu();
-    context.setSearch('')
-    context.setSearchByCategory('')
+    context.setSearch("");
+    context.setSearchByCategory("");
   };
-
+  const handleButton = () => {
+    console.log(context.cartProducts);
+    if (context.cartProducts.length > 0) {
+      return (
+        <Link to="/my-orders/last">
+          <button
+            className="bg-black text-white w-full rounded-lg py-3 cursor-pointer hover:bg-gradient-to-r hover:from-violet-600 hover:to-indigo-600"
+            onClick={() => handleCheckout()}
+          >
+            Checkout
+          </button>
+        </Link>
+      );
+    } else {
+      return (
+        <button
+          className="bg-gray-300 text-white w-full rounded-lg py-3 cursor-pointer"
+          disabled
+        >
+          Checkout
+        </button>
+      );
+    }
+  };
 
   return (
     <aside
@@ -47,7 +70,7 @@ const CheckOutSideMenu = () => {
           />
         </div>
       </div>
-      <div className="px-6 overflow-y-scroll flex-1">
+      <div className="px-6 overflow-y-scroll flex-1 custom-scroll">
         {context.cartProducts?.length > 0 ? (
           context.cartProducts.map((product) => (
             <OrderCard
@@ -63,6 +86,7 @@ const CheckOutSideMenu = () => {
           <p className="text-center p-4">No hay productos en el carrito</p>
         )}
       </div>
+
       <div className="px-6 mb-6">
         <p className="flex justify-between items-center mb-3">
           <span className=" font-light">Total:</span>
@@ -70,14 +94,7 @@ const CheckOutSideMenu = () => {
             ${totalPrice(context.cartProducts)}
           </span>
         </p>
-        <Link to="/my-orders/last">
-          <button
-            className="bg-black text-white w-full rounded-lg py-3 cursor-pointer"
-            onClick={() => handleCheckout()}
-          >
-            Checkout
-          </button>
-        </Link>
+        {handleButton()}
       </div>
     </aside>
   );

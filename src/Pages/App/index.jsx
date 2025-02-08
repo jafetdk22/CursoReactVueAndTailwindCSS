@@ -1,5 +1,6 @@
+import { useContext } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { ShoppingContextProvider } from "../../Context";
+import { ShoppingContextProvider, ShoppingContext } from "../../Context";
 
 import Home from "../Home";
 import MyAccount from "../myAccount";
@@ -13,14 +14,19 @@ import CheckOutSideMenu from "../../Components/CheckOutSideMenu";
 import "./App.css";
 
 const AppRoutes = () => {
+   const context = useContext(ShoppingContext);
+
   return (
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/clothes" element={<Home />} />
-        <Route path="/electronics" element={<Home />} />
-        <Route path="/furnitures" element={<Home />} />
-        <Route path="/toys" element={<Home />} />
-        <Route path="/others" element={<Home />} />
+
+        {
+          context.categories.map((category) => (
+            <Route key={category.path}  path={category.path} element={<Home />} />
+          ))
+        }
+
+
         <Route path="/my-account" element={<MyAccount />} />
         <Route path="/my-order" element={<MyOrder />} />
         <Route path="/*" element={<NotFound />} />
@@ -37,7 +43,7 @@ const App = () => {
     <ShoppingContextProvider>
       <BrowserRouter>
         <AppRoutes />
-        <NavBar />
+        <NavBar/>
         <CheckOutSideMenu />
       </BrowserRouter>
     </ShoppingContextProvider>
