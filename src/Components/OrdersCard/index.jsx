@@ -24,10 +24,11 @@ const OrdersCard = props => {
         <div className="flex flex-col items-end">
             <span className="text-xs text-gray-500 mb-1">Total</span>
             <span className="text-lg font-semibold bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent">
-                ${totalPrice}
+                {totalPrice}$
             </span>
         </div>
     </div>
+
   );
 };
 

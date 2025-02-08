@@ -3,80 +3,69 @@ import { useContext } from "react";
 import ShoppingContext from "../../Context";
 import { ShoppingBagIcon } from "@heroicons/react/24/solid";
 
-const NavBar = ({ darkMode, toggleDarkMode }) => {
+const NavBar = () => {
   const context = useContext(ShoppingContext);
-  const activeStyle = "underline underline-offset-4";
+
+  const activeStyle = "bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent font-semibold";
+  const inactiveStyle = "font-semibold hover:opacity-80 transition-opacity";
+  const renderIcon = () => (
+    <li
+      className="flex items-center gap-2 relative cursor-pointer"
+      onClick={() =>
+        context.isOpenCheckoutSideMenu
+          ? context.closeCheckoutSideMenu()
+          : context.openCheckoutSideMenu()
+      }
+    >
+      <ShoppingBagIcon className="w-6 h-6 text-black" />
+      {context?.cartProducts?.length > 0 && (
+        <span className="absolute bottom-3 left-4 bg-gradient-to-r from-violet-600 to-indigo-600 text-white rounded-full px-2">
+          {context.cartProducts.length}
+        </span>
+      )}
+
+    </li>
+  );
+  
   return (
-    <nav className="flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-light bg-white">
-      <ul className="flex justify-between items-center gap-3">
-        <li className="font-semibold text-lg">
-          <NavLink to="/">Shopi</NavLink>
+    <nav className="flex justify-between items-center fixed z-10 top-0 w-full py-4 px-10 text-sm font-light shadow-lg bg-white">
+      <ul className="flex items-center gap-6">
+        <li className="font-bold text-xl">
+          <NavLink to="/" className="bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent hover:opacity-80 transition-opacity">
+            Shopi
+          </NavLink>
         </li>
         <li>
           <NavLink
             to="/"
             onClick={() => {
-              context.setSearchByCategory('')
-              context.setSearch('')
+              context.setSearchByCategory("");
+              context.setSearch("");
             }}
-            className={({ isActive }) => (isActive ? activeStyle : undefined)}
+            className={({ isActive }) => (isActive ? activeStyle : inactiveStyle)}
           >
             All
           </NavLink>
         </li>
-        <li>
+        {context.categories.map(({ path, label, category }) => (
+        <li key={category}>
           <NavLink
-            to="/clothes"
-            onClick={() => context.setSearchByCategory('Clothes')}
-            className={({ isActive }) => (isActive ? activeStyle : undefined)}
+            to={path}
+            onClick={() => context.setSearchByCategory(category)}
+            className={({ isActive }) => (isActive ? activeStyle : inactiveStyle)}
           >
-            Clothes
+            {label}
           </NavLink>
         </li>
-        <li>
-          <NavLink
-            to="/electronics"
-            onClick={() => context.setSearchByCategory('Electronics')}
-            className={({ isActive }) => (isActive ? activeStyle : undefined)}
-          >
-
-            Electronics
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/furnitures"
-            onClick={() => context.setSearchByCategory('Furniture')}
-            className={({ isActive }) => (isActive ? activeStyle : undefined)}
-          >
-            Furnitures
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/toys"
-            onClick={() => context.setSearchByCategory('Toy')}
-            className={({ isActive }) => (isActive ? activeStyle : undefined)}
-          >
-            Toys
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/others"
-            onClick={() => context.setSearchByCategory('Others')}
-            className={({ isActive }) => (isActive ? activeStyle : undefined)}
-          >
-            Others
-          </NavLink>
-        </li>
+      ))}
       </ul>
-      <ul className="flex justify-between items-center gap-3">
-        <li className="text-black/60">Jafetdk22@hotmail.com</li>
+
+      <ul className="flex items-center gap-6">
+        <li className="text-gray-400">ing.jafet.sg@outlook.com</li>
         <li>
           <NavLink
             to="/my-orders"
-            className={({ isActive }) => (isActive ? activeStyle : undefined)}
+            className={({ isActive }) => (isActive ? activeStyle : inactiveStyle)}
           >
             My Orders
           </NavLink>
@@ -84,7 +73,7 @@ const NavBar = ({ darkMode, toggleDarkMode }) => {
         <li>
           <NavLink
             to="/my-account"
-            className={({ isActive }) => (isActive ? activeStyle : undefined)}
+            className={({ isActive }) => (isActive ? activeStyle : inactiveStyle)}
           >
             My Account
           </NavLink>
@@ -92,15 +81,12 @@ const NavBar = ({ darkMode, toggleDarkMode }) => {
         <li>
           <NavLink
             to="/sing-in"
-            className={({ isActive }) => (isActive ? activeStyle : undefined)}
+            className={({ isActive }) => (isActive ? activeStyle : inactiveStyle)}
           >
-            SingIn
+            Sign In
           </NavLink>
         </li>
-        <li className="flex items-center gap-2">
-          <ShoppingBagIcon className="w-6 h-6 text-black-500" />
-          {context?.cartProducts?.length || 0}
-        </li>
+        {renderIcon()}
       </ul>
     </nav>
   );

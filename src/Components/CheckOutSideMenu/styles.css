@@ -5,3 +5,29 @@
     box-sizing: border-box;
     position: fixed;
 }
+/* Aplicamos el gradiente al fondo del contenedor */
+.custom-scroll {
+    padding-right: 10px; /* Espacio para el scroll */
+    overflow-y: auto; /* Habilitamos el scroll vertical */
+  }
+  
+  /* Personalización del scrollbar */
+  .custom-scroll::-webkit-scrollbar {
+    width: 8px; /* Ancho del scrollbar */
+  }
+  
+  .custom-scroll::-webkit-scrollbar-thumb {
+    background: #d3d3d3;
+    border-radius: 10px; /* Bordes redondeados */
+  }
+  
+  
+  /* Opcional: Hover sobre el pulgar del scrollbar */
+  .custom-scroll::-webkit-scrollbar-thumb:hover {
+    background-color: #827797; /* Cambio de color al pasar el ratón */
+  }
+  
+  .custom-scroll::-webkit-scrollbar-track-piece {
+    background: rgba(255, 255, 255, 0.1); /* Fondo semi-transparente */
+  }
+  

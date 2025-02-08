@@ -17,15 +17,16 @@ const MyOrder = () => {
     const order = context.order?.[orderIndex];
   return (
     <Layout>
-      <div className='flex flex-col w-80'>
-        <div className='relative flex w-full items-center justify-center mb-6'>
-            <Link to='/my-orders' className='absolute left-0'>
+      <div className='flex flex-col w-full justify-center'>
+        <div className='relative flex w-full justify-center items-center mb-6'>
+            <Link to='/my-orders' className=''>
                 <ChevronLeftIcon className='w-6 h-6 text-black cursor-pointer hover:text-gray-500 transition-colors'/>
             </Link>
-            <h1 className='text-2xl font-bold'>My Orders</h1>
+
+            <h1 className='text-2xl font-bold ms-3'>My Orders</h1>
         </div>
         
-        <div className="flex flex-col gap-4 w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-screen-lg mx-auto">
           {
             order?.products?.map(product => (
               <OrderCard      

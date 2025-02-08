@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import NavBar from '../NavBar';
 
 const Layout = ({children}) => {
     const [darkMode, setDarkMode] = useState(false);
@@ -9,11 +8,11 @@ const Layout = ({children}) => {
     };
 
     return (
-        <div className={`flex flex-col items-center mt-20 ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'} shadow-lg rounded-lg p-6`}>
-            <NavBar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+        <div className="flex flex-col mt-20 items-center">
             {children}
         </div>
     )
+
 }   
 
 export default Layout;
