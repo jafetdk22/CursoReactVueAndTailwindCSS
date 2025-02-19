@@ -31,7 +31,6 @@ const CheckOutSideMenu = () => {
     context.setSearchByCategory("");
   };
   const handleButton = () => {
-    console.log(context.cartProducts);
     if (context.cartProducts.length > 0) {
       return (
         <Link to="/my-orders/last">

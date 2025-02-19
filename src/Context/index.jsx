@@ -2,7 +2,33 @@ import { createContext, useState, useEffect } from "react";
 import productsData from "../data/products.json";
 export const ShoppingContext = createContext();
 
+export const initializerLocalStorage = () => {
+  const accountInLocalStorage = localStorage.getItem("account");
+  const singOutInLocalStorage = localStorage.getItem("sign-out");
+  let accountParsed;
+  let singOutParsed;
+  if (!accountInLocalStorage) {
+    localStorage.setItem("account", JSON.stringify({}));
+    accountParsed = {};
+  } else {
+    accountParsed = JSON.parse(accountInLocalStorage);
+  }
+  if (!singOutInLocalStorage) {
+    localStorage.setItem("sign-out", JSON.stringify(false));
+    singOutParsed = false;
+  } else {
+    singOutParsed = JSON.parse(singOutInLocalStorage);
+  }
+};
+
 export const ShoppingContextProvider = ({ children }) => {
+
+  //my account
+  const [account, setAccount] = useState({});
+
+  //singOut
+  const [singOut, setSignOut] = useState(false);
+
   // Shopping Cart » Count
   const [count, setCount] = useState(0);
   const categoriesPath = [
@@ -50,7 +76,7 @@ export const ShoppingContextProvider = ({ children }) => {
   const [filteredItems, setFilteredItems] = useState(null);
 
   useEffect(() => {
-    fetch("https://api.escuelajs.co/api/v1/productss")
+    fetch("https://api.escuelajs.co/api/v1/products")
       .then((response) => response.json())
       .then((data) => {
         if (Array.isArray(data) && data.length > 0) {
@@ -134,6 +160,10 @@ export const ShoppingContextProvider = ({ children }) => {
       setFilteredItems(filteredBy(null, items, search, searchByCategory));
   }, [items, searchByCategory, search]);
 
+  useEffect(() => {
+    initializerLocalStorage();
+  }, []);
+
   return (
     <ShoppingContext.Provider
       value={{
@@ -161,11 +191,17 @@ export const ShoppingContextProvider = ({ children }) => {
         setSearchByCategory,
         categories,
         setCategories,
+        account,
+        setAccount,
+        singOut,
+        setSignOut
       }}
     >
       {children}
     </ShoppingContext.Provider>
   );
 };
+
+
 
 export default ShoppingContext;
