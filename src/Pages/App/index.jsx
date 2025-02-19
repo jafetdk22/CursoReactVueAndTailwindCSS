@@ -41,7 +41,7 @@ const AppRoutes = () => {
 
         <Route path="/my-account" element={hasUserAnAccount && !isUserSignOut ?<MyAccount />:<Navigate replace to={'/sign-in'}/>} />
         <Route path="/my-order" element={hasUserAnAccount && !isUserSignOut ?<MyOrder />:<Navigate replace to={'/sign-in'}/>} />
-        <Route path="/*" element={<NotFound />} />
+        <Route path="/*" element={hasUserAnAccount && !isUserSignOut ?<NotFound />:<Navigate replace to={'/sign-in'}/>} />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/my-orders" element={hasUserAnAccount && !isUserSignOut ?<MyOrders />:<Navigate replace to={'/sign-in'}/>} />
         <Route path="/my-orders/last" element={hasUserAnAccount && !isUserSignOut ?<MyOrder />:<Navigate replace to={'/sign-in'}/>} />
