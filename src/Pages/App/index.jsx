@@ -29,7 +29,7 @@ const AppRoutes = () => {
 
   return (
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={hasUserAnAccount && !isUserSignOut ?<Home />:<Navigate replace to={'/sign-in'}/>} />
 
         {
           context.categories.map((category) => (
@@ -39,13 +39,13 @@ const AppRoutes = () => {
         }
 
 
-        <Route path="/my-account" element={<MyAccount />} />
-        <Route path="/my-order" element={<MyOrder />} />
+        <Route path="/my-account" element={hasUserAnAccount && !isUserSignOut ?<MyAccount />:<Navigate replace to={'/sign-in'}/>} />
+        <Route path="/my-order" element={hasUserAnAccount && !isUserSignOut ?<MyOrder />:<Navigate replace to={'/sign-in'}/>} />
         <Route path="/*" element={<NotFound />} />
         <Route path="/sign-in" element={<SignIn />} />
-        <Route path="/my-orders" element={<MyOrders />} />
-        <Route path="/my-orders/last" element={<MyOrder />} />
-        <Route path="/my-orders/:index" element={<MyOrder />} />
+        <Route path="/my-orders" element={hasUserAnAccount && !isUserSignOut ?<MyOrders />:<Navigate replace to={'/sign-in'}/>} />
+        <Route path="/my-orders/last" element={hasUserAnAccount && !isUserSignOut ?<MyOrder />:<Navigate replace to={'/sign-in'}/>} />
+        <Route path="/my-orders/:index" element={hasUserAnAccount && !isUserSignOut ?<MyOrder />:<Navigate replace to={'/sign-in'}/>} />
       </Routes>
   );
 };
