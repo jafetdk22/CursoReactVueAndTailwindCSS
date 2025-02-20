@@ -1,0 +1,79 @@
+.nav-brand{
+    display: flex;
+}
+.IconBar,.btn-plus{
+    display: none;
+}
+
+@media (max-width: 1000px) {
+    .navbar{
+        max-height:auto;
+        display: block;
+        justify-content: center;
+        padding: 0;
+    }
+    .nav-brand{
+        display: block;
+    }
+    .nav-brand button{
+        width: 90vw;
+        margin-bottom: 1rem;
+    }
+    .nav-ul{
+        display: none;
+    }
+    .nav-ul li{
+        padding:.5rem;
+        font-size: 1.2rem;
+        text-align: center;
+        margin-bottom: .5rem;
+    }
+    .IconBar{
+        display: block;
+        font-weight: bold;
+    }
+    .nav-menu{
+        bottom: 2.5rem;
+        right: 1rem;
+        position:fixed;
+    }
+    .btn-plus {
+        position: absolute;
+        width: 2rem;
+        height: 2rem;
+        right: 0;
+        border-radius: 50%;
+        border: 1px solid rgb(140, 56, 165);
+        -webkit-box-shadow: 0px 1px 6px 1px rgba(0,0,0,0.54);
+        -moz-box-shadow: 0px 1px 6px 1px rgba(0,0,0,0.54);
+        box-shadow: 0px 1px 6px 1px rgba(0,0,0,0.54);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+        animation: rotate 0.5s ease-in-out;
+    }
+    .ul-plus{
+        min-width: 30vw;
+        min-height: 20vh;
+        padding: .5rem 1rem;
+        margin-bottom: .5rem;
+        border-radius: .5rem;
+        font-size: 1.2rem;
+        border: 1px solid rgb(140, 56, 165);
+        background-color: white;
+        display: none; 
+    }
+    .open{
+        display: block;
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(45deg);
+    }
+} 

@@ -10,7 +10,7 @@ const Home = () => {
     if (context.filteredItems?.length > 0) {
       
       return (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full max-w-screen-lg mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full max-w-screen-lg mx-auto px-6">
           {context.filteredItems.map((item) => (
             <Card key={item.id} data={item} />
           ))}
