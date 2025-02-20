@@ -76,7 +76,7 @@ export const ShoppingContextProvider = ({ children }) => {
   const [filteredItems, setFilteredItems] = useState(null);
 
   useEffect(() => {
-    fetch("https://api.escuelajs.co/api/v1/products")
+    fetch("https://api.escuelajs.co/api/v1/productss")
       .then((response) => response.json())
       .then((data) => {
         if (Array.isArray(data) && data.length > 0) {
